@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MODACORE — ERP Administrador & Gestión de Tienda</title>
+  <meta name="description" content="Panel ERP integral para administrar inventario, precios, métodos de pago, pedidos y clientes en ModaCore.">
+  
+  <!-- Estilos del ERP -->
+  <link rel="stylesheet" href="css/admin.css">
+
+  <!-- Favicon SVG moderno -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23C5A880'/><text x='50' y='65' font-size='42' font-family='sans-serif' font-weight='bold' text-anchor='middle' fill='%23121212'>M</text></svg>">
+</head>
+<body>
+
+  <div class="erp-layout">
+    <!-- ==========================================
+         SIDEBAR DE NAVEGACIÓN ERP
+         ========================================== -->
+    <aside class="erp-sidebar">
+      <div class="sidebar-header">
+        <a href="admin.html" class="sidebar-brand">
+          <span class="brand-text">MODACORE</span>
+          <span class="brand-tag">ERP v2.6</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Principal</div>
+        <a href="#dashboard" class="erp-nav-item active" data-tab="dashboard">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          <span>Panel General</span>
+        </a>
+
+        <div class="nav-section-title">Catálogo & Ventas</div>
+        <a href="#inventory" class="erp-nav-item" data-tab="inventory">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+          <span>Inventario & Stock</span>
+          <span class="nav-counter" id="sidebarStockCount">15</span>
+        </a>
+
+        <a href="#pricing" class="erp-nav-item" data-tab="pricing">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+          </svg>
+          <span>Precios & Rebajas</span>
+        </a>
+
+        <a href="#orders" class="erp-nav-item" data-tab="orders">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+          <span>Pedidos y Envíos</span>
+          <span class="nav-counter" id="sidebarOrdersCount">4</span>
+        </a>
+
+        <div class="nav-section-title">Finanzas & Clientes</div>
+        <a href="#payments" class="erp-nav-item" data-tab="payments">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+          </svg>
+          <span>Métodos de Pago</span>
+        </a>
+
+        <a href="#customers" class="erp-nav-item" data-tab="customers">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <span>Clientes</span>
+        </a>
+
+        <div class="nav-section-title">Ajustes</div>
+        <a href="#settings" class="erp-nav-item" data-tab="settings">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <span>Configuración</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="index.html" class="btn-store-return">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          <span>Volver a la Tienda</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ==========================================
+         ÁREA PRINCIPAL Y CONTENIDO
+         ========================================== -->
+    <main class="erp-main">
+      <!-- Barra Superior (Topbar) -->
+      <header class="erp-topbar">
+        <div class="topbar-left">
+          <h1 class="page-headline" id="pageTitle">Panel General & Métricas</h1>
+          <div class="sync-status">
+            <span class="sync-dot"></span>
+            <span>Sincronizado con Tienda</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <!-- Selector Tema ERP Claro / Oscuro -->
+          <button class="btn-icon-erp" id="erpThemeToggle" title="Cambiar tema">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </button>
+
+          <!-- Avatar Administrador -->
+          <div class="admin-avatar" title="Administrador Principal">AD</div>
+        </div>
+      </header>
+
+      <!-- Contenedor de Vistas -->
+      <div class="erp-content-viewport">
+
+        <!-- ==========================================
+             1. VISTA: DASHBOARD
+             ========================================== -->
+        <section class="erp-view" id="view-dashboard">
+          <!-- Rejilla de KPIs -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-title">Ventas Totales</span>
+                <div class="kpi-icon" style="background: var(--accent-gold-glow); color: var(--accent-gold);">
+                  <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+              </div>
+              <div class="kpi-value" id="kpiTotalSales">0.00€</div>
+              <div class="kpi-meta positive">
+                <span>↑ +18.4%</span>
+                <span>vs. mes anterior</span>
+              </div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-title">Pedidos Registrados</span>
+                <div class="kpi-icon" style="background: var(--accent-blue-bg); color: var(--accent-blue);">
+                  <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                </div>
+              </div>
+              <div class="kpi-value" id="kpiTotalOrders">0</div>
+              <div class="kpi-meta positive">
+                <span>↑ 100% procesados</span>
+              </div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-title">Clientes Registrados</span>
+                <div class="kpi-icon" style="background: rgba(168, 85, 247, 0.15); color: #C084FC;">
+                  <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                </div>
+              </div>
+              <div class="kpi-value" id="kpiTotalCustomers">0</div>
+              <div class="kpi-meta">
+                <span>Fidelidad media: 82%</span>
+              </div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-title">Alertas de Stock Bajo</span>
+                <div class="kpi-icon" style="background: var(--accent-amber-bg); color: var(--accent-amber);">
+                  <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                </div>
+              </div>
+              <div class="kpi-value" id="kpiLowStock">0</div>
+              <div class="kpi-meta negative">
+                <span>Requieren reposición inmediata</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tablas de Resumen en Dashboard -->
+          <div class="dashboard-split-grid">
+            <!-- Pedidos Recientes -->
+            <div class="erp-card-container">
+              <div class="card-header-flex">
+                <div class="card-title-group">
+                  <h3>Últimos Pedidos Entrantes</h3>
+                  <p>Monitoreo en tiempo real de transacciones</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="erp-table">
+                  <thead>
+                    <tr>
+                      <th>ID Pedido</th>
+                      <th>Cliente</th>
+                      <th>Fecha</th>
+                      <th>Total</th>
+                      <th>Estado</th>
+                      <th>Acción</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dashboardRecentOrders">
+                    <!-- Dinámico -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Reposición de Inventario -->
+            <div class="erp-card-container">
+              <div class="card-header-flex">
+                <div class="card-title-group">
+                  <h3>Control de Stock Crítico</h3>
+                  <p>Prendas con 5 o menos unidades</p>
+                </div>
+              </div>
+              <div id="dashboardLowStock">
+                <!-- Dinámico -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             2. VISTA: INVENTARIO & PRODUCTOS
+             ========================================== -->
+        <section class="erp-view" id="view-inventory" style="display: none;">
+          <div class="erp-card-container">
+            <div class="card-header-flex">
+              <div class="card-title-group">
+                <h3>Catálogo General de Productos</h3>
+                <p>Edita detalles, ajusta el stock o añade nuevas colecciones para Kids, Mujeres y Hombres</p>
+              </div>
+              <div class="erp-actions-row">
+                <button class="btn-erp-primary" id="openNewProductBtn">
+                  <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                  </svg>
+                  Nuevo Producto
+                </button>
+              </div>
+            </div>
+
+            <!-- Filtros y Búsqueda -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+              <div style="display: flex; gap: 8px;">
+                <button class="btn-erp-primary inv-filter-btn" data-cat="all">Todos</button>
+                <button class="btn-erp-secondary inv-filter-btn" data-cat="mujeres">Mujeres</button>
+                <button class="btn-erp-secondary inv-filter-btn" data-cat="hombres">Hombres</button>
+                <button class="btn-erp-secondary inv-filter-btn" data-cat="kids">Kids</button>
+              </div>
+
+              <div class="erp-search-box">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <input type="text" id="inventorySearch" placeholder="Buscar por nombre o SKU...">
+              </div>
+            </div>
+
+            <!-- Tabla de Inventario -->
+            <div class="table-responsive">
+              <table class="erp-table">
+                <thead>
+                  <tr>
+                    <th>Producto & SKU</th>
+                    <th>Categoría & Tipo</th>
+                    <th>Precio</th>
+                    <th>Stock Disponible</th>
+                    <th>Tallas</th>
+                    <th>Etiqueta</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="inventoryTableBody">
+                  <!-- Inyectado dinámicamente -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             3. VISTA: PRECIOS & REBAJAS
+             ========================================== -->
+        <section class="erp-view" id="view-pricing" style="display: none;">
+          <!-- Bloque de Herramientas de Rebajas Masivas -->
+          <div class="erp-card-container">
+            <div class="card-header-flex">
+              <div class="card-title-group">
+                <h3>Campañas y Descuentos Masivos</h3>
+                <p>Aplica variaciones de precio en lote a toda la tienda con un solo clic</p>
+              </div>
+              <div class="erp-actions-row">
+                <button class="btn-erp-secondary" onclick="applyBulkDiscount(10)">-10% Descuento</button>
+                <button class="btn-erp-secondary" onclick="applyBulkDiscount(20)">-20% Rebajas</button>
+                <button class="btn-erp-secondary" onclick="applyBulkDiscount(30)">-30% Flash</button>
+                <button class="btn-erp-secondary" style="border-color: var(--accent-red);" onclick="resetDiscounts()">Restablecer Precios</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabla de Precios Individuales -->
+          <div class="erp-card-container">
+            <div class="card-header-flex">
+              <div class="card-title-group">
+                <h3>Lista de Precios y Ofertas</h3>
+                <p>Modifica directamente el precio de venta y el precio tachado de rebaja</p>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="erp-table">
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th>Precio Actual</th>
+                    <th>Precio Original / Antes</th>
+                    <th>% Descuento</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody id="pricingTableBody">
+                  <!-- Dinámico -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Cupones y Códigos de Descuento -->
+          <div class="erp-card-container">
+            <div class="card-header-flex">
+              <div class="card-title-group">
+                <h3>Códigos Promocionales y Cupones</h3>
+                <p>Crea cupones para el carrito de compras</p>
+              </div>
+              <button class="btn-erp-primary" id="openNewCouponBtn">+ Nuevo Cupón</button>
+            </div>
+            <div class="table-responsive">
+              <table class="erp-table">
+                <thead>
+                  <tr>
+                    <th>Código</th>
+                    <th>Descuento</th>
+                    <th>Usos</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody id="couponsTableBody">
+                  <!-- Dinámico -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             4. VISTA: MÉTODOS DE PAGO
+             ========================================== -->
+        <section class="erp-view" id="view-payments" style="display: none;">
+          <div class="erp-card-container">
+            <div class="card-header-flex">
+              <div class="card-title-group">
+                <h3>Pasarelas y Métodos de Cobro Habilitados</h3>
+                <p>Activa o desactiva pasarelas de pago disponibles para los clientes al finalizar compra</p>
+              </div>
+            </div>
+
+            <div class="payment-methods-grid" id="paymentMethodsGrid">
+              <!-- Renderizado dinámicamente -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             5. VISTA: CLIENTES
+             ========================================== -->
+        <section class="erp-view" id="view-customers" style="display: none;">
+          <div class="erp-card-container">
+            <div class="card-header-flex">
+              <div class="card-title-group">
+                <h3>Directorio de Clientes</h3>
+                <p>Historial de compradores, gasto acumulado y nivel de fidelidad</p>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="erp-table">
+                <thead>
+                  <tr>
+                    <th>Cliente</th>
+                    <th>Contacto</th>
+                    <th>Ciudad</th>
+                    <th>Pedidos</th>
+                    <th>Gasto Total</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody id="customersTableBody">
+                  <!-- Dinámico -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             6. VISTA: PEDIDOS Y ENVÍOS
+             ========================================== -->
+        <section class="erp-view" id="view-orders" style="display: none;">
+          <div class="erp-card-container">
+            <div class="card-header-flex">
+              <div class="card-title-group">
+                <h3>Control de Pedidos de la Tienda</h3>
+                <p>Cambia el estado de los pedidos en tiempo real para notificar al cliente</p>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="erp-table">
+                <thead>
+                  <tr>
+                    <th>ID Pedido</th>
+                    <th>Cliente</th>
+                    <th>Fecha</th>
+                    <th>Prendas</th>
+                    <th>Total</th>
+                    <th>Estado de Envío</th>
+                    <th>Detalle</th>
+                  </tr>
+                </thead>
+                <tbody id="ordersTableBody">
+                  <!-- Dinámico -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             7. VISTA: CONFIGURACIÓN GENERAL
+             ========================================== -->
+        <section class="erp-view" id="view-settings" style="display: none;">
+          <div class="erp-card-container" style="max-width: 800px;">
+            <div class="card-header-flex">
+              <div class="card-title-group">
+                <h3>Configuración General del Negocio</h3>
+                <p>Ajustes de tienda, umbral de envío gratuito y notificaciones</p>
+              </div>
+            </div>
+
+            <form id="settingsForm" style="display: flex; flex-direction: column; gap: 1.2rem;">
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label">Nombre de la Tienda</label>
+                  <input type="text" class="form-control" id="setStoreName" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Divisa Principal</label>
+                  <input type="text" class="form-control" id="setCurrency" value="EUR (€)">
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label">Tasa de IVA / Impuestos (%)</label>
+                  <input type="number" class="form-control" id="setVat" value="21">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Umbral Envío Gratis (€)</label>
+                  <input type="number" step="0.5" class="form-control" id="setFreeShipping" value="90">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Correo de Alertas de Pedidos</label>
+                <input type="email" class="form-control" id="setEmail" required>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 10px; margin-top: 0.5rem;">
+                <label class="switch-label">
+                  <input type="checkbox" id="setAlertEmail" checked>
+                  <span class="switch-slider"></span>
+                </label>
+                <span style="font-size: 0.88rem;">Recibir email inmediato por cada nueva venta</span>
+              </div>
+
+              <div style="margin-top: 1rem;">
+                <button type="submit" class="btn-erp-primary">Guardar Configuración</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ==========================================
+       MODAL: AÑADIR / EDITAR PRODUCTO
+       ========================================== -->
+  <div class="erp-modal-overlay" id="productModal">
+    <div class="erp-modal-box">
+      <div class="erp-modal-header">
+        <h3 class="erp-modal-title" id="productModalTitle">Nuevo Producto</h3>
+        <button class="erp-modal-close" id="closeProductModalBtn">✕</button>
+      </div>
+      <form id="productForm">
+        <div class="erp-modal-body">
+          <input type="hidden" id="prodId">
+
+          <div class="form-group">
+            <label class="form-label">Nombre de la Prenda o Calzado</label>
+            <input type="text" class="form-control" id="prodName" placeholder="Ej: Abrigo Trench Minimalista" required>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Sección / Categoría</label>
+              <select class="form-control" id="prodCategory" required>
+                <option value="mujeres">Mujeres</option>
+                <option value="hombres">Hombres</option>
+                <option value="kids">Kids</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tipo de Producto</label>
+              <select class="form-control" id="prodType" required>
+                <option value="ropa">Ropa</option>
+                <option value="calzado">Calzado</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Precio Actual (€)</label>
+              <input type="number" step="0.05" class="form-control" id="prodPrice" placeholder="99.95" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Precio Original / Antes (€) (Opcional)</label>
+              <input type="number" step="0.05" class="form-control" id="prodOriginalPrice" placeholder="129.95">
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Unidades en Stock</label>
+              <input type="number" class="form-control" id="prodStock" value="15" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Insignia / Tag</label>
+              <input type="text" class="form-control" id="prodTag" placeholder="Ej: Nuevo, Más Vendido, -20%">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">URL de Imagen (Unsplash u otra)</label>
+            <input type="url" class="form-control" id="prodImage" placeholder="https://images.unsplash.com/..." required>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Tallas Disponibles (Separadas por coma)</label>
+              <input type="text" class="form-control" id="prodSizes" value="XS, S, M, L, XL" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Colores Hex (Separados por coma)</label>
+              <input type="text" class="form-control" id="prodColors" value="#121212, #E6D7C3, #FFFFFF">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Descripción Detallada</label>
+            <textarea class="form-control" id="prodDesc" rows="3" placeholder="Detalles de corte, materiales y confección..."></textarea>
+          </div>
+        </div>
+        <div class="erp-modal-footer">
+          <button type="button" class="btn-erp-secondary" id="cancelProductBtn">Cancelar</button>
+          <button type="submit" class="btn-erp-primary">Guardar Producto</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: CONFIRMAR ELIMINACIÓN (SIN CONFIRM NATIVO)
+       ========================================== -->
+  <div class="erp-modal-overlay" id="confirmDeleteModal">
+    <div class="erp-modal-box" style="max-width: 440px; text-align: center;">
+      <div style="padding: 2.2rem;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: var(--accent-red-bg); color: var(--accent-red); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem;">
+          <svg width="26" height="26" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+          </svg>
+        </div>
+        <h3 style="font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 0.6rem;">¿Eliminar este producto?</h3>
+        <p style="color: var(--erp-text-muted); font-size: 0.88rem; line-height: 1.5; margin-bottom: 1.6rem;" id="deleteConfirmMessage">
+          Esta acción quitará el producto permanentemente del catálogo de la tienda web.
+        </p>
+        <div style="display: flex; gap: 10px; justify-content: center;">
+          <button class="btn-erp-secondary" id="cancelDeleteBtn" style="flex: 1;">Cancelar</button>
+          <button class="btn-erp-primary" id="confirmDeleteBtn" style="background: var(--accent-red); color: #FFFFFF; flex: 1;">Sí, Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: DETALLE DE PEDIDO
+       ========================================== -->
+  <div class="erp-modal-overlay" id="orderDetailModal">
+    <div class="erp-modal-box" style="max-width: 580px;">
+      <div class="erp-modal-header">
+        <h3 class="erp-modal-title">Desglose del Pedido <span id="odOrderId" style="color: var(--accent-gold);"></span></h3>
+        <button class="erp-modal-close" id="closeOrderDetailBtn">✕</button>
+      </div>
+      <div class="erp-modal-body">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.85rem; color: var(--erp-text-muted);" id="odDate"></span>
+          <span id="odStatusBadge"></span>
+        </div>
+
+        <div style="background: var(--erp-card); padding: 1.2rem; border-radius: var(--radius-md); border: 1px solid var(--erp-border);">
+          <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--erp-text-dim); font-weight: 700; margin-bottom: 6px;">Datos del Cliente</div>
+          <div style="font-weight: 700;" id="odCustomerName"></div>
+          <div style="font-size: 0.85rem; color: var(--erp-text-muted);" id="odCustomerEmail"></div>
+          <div style="font-size: 0.85rem; color: var(--erp-text-muted);" id="odCustomerPhone"></div>
+          <div style="font-size: 0.85rem; margin-top: 6px; color: var(--erp-text);" id="odAddress"></div>
+        </div>
+
+        <div>
+          <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--erp-text-dim); font-weight: 700; margin-bottom: 8px;">Prendas Compradas</div>
+          <div id="odItemsList">
+            <!-- Artículos -->
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--erp-border);">
+          <div>
+            <span style="font-size: 0.8rem; color: var(--erp-text-muted);">Método de Pago:</span>
+            <div style="font-weight: 600; font-size: 0.88rem;" id="odPayment"></div>
+          </div>
+          <div style="text-align: right;">
+            <span style="font-size: 0.8rem; color: var(--erp-text-muted);">Total Pagado:</span>
+            <div style="font-size: 1.4rem; font-weight: 700; color: var(--accent-gold);" id="odTotal"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: NUEVO CUPÓN PROMOCIONAL
+       ========================================== -->
+  <div class="erp-modal-overlay" id="newCouponModal">
+    <div class="erp-modal-box" style="max-width: 440px;">
+      <div class="erp-modal-header">
+        <h3 class="erp-modal-title">Crear Nuevo Cupón</h3>
+        <button class="erp-modal-close" id="closeCouponModalBtn">✕</button>
+      </div>
+      <form id="couponForm">
+        <div class="erp-modal-body">
+          <div class="form-group">
+            <label class="form-label">Código del Cupón</label>
+            <input type="text" class="form-control" id="couponCode" placeholder="Ej: OTOÑO15" style="text-transform: uppercase;" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Valor de Descuento</label>
+            <input type="text" class="form-control" id="couponDiscount" placeholder="Ej: 15% o 10€" required>
+          </div>
+        </div>
+        <div class="erp-modal-footer">
+          <button type="button" class="btn-erp-secondary" id="cancelCouponBtn">Cancelar</button>
+          <button type="submit" class="btn-erp-primary">Activar Cupón</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Contenedor Toast ERP -->
+  <div class="erp-toast-container" id="erpToastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/products.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

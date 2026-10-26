@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MODACORE — Colección Mujeres | Ropa & Calzado Femenino</title>
+  <meta name="description" content="Colección femenina de ModaCore: vestidos de seda, sastrería contemporánea, gabardinas, botines y sneakers minimalistas.">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23121212'/><circle cx='50' cy='50' r='12' fill='%23C5A880'/></svg>">
+</head>
+<body data-page="mujeres">
+
+  <!-- ==========================================
+       BARRA DE NAVEGACIÓN PRINCIPAL
+       ========================================== -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <button class="icon-btn mobile-menu-toggle" id="mobileMenuBtn" aria-label="Abrir menú">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      <a href="index.html" class="brand-logo">
+        MODACORE<span class="logo-dot"></span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="mujeres.html" class="nav-link active">Mujeres</a>
+        <a href="hombres.html" class="nav-link">Hombres</a>
+        <a href="kids.html" class="nav-link">Kids <span class="nav-badge-new">Trend</span></a>
+        <a href="calzado.html" class="nav-link">Calzado</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="admin.html" class="btn-erp-access" title="Abrir Panel ERP">
+          <span class="erp-dot"></span>
+          <span>Admin ERP</span>
+        </a>
+
+        <button class="icon-btn" id="themeToggleBtn" title="Cambiar tema" aria-label="Cambiar tema">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+
+        <button class="icon-btn" id="wishlistHeaderBtn" title="Favoritos" aria-label="Favoritos">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+          <span class="badge-count" id="wishlistBadge" style="display: none;">0</span>
+        </button>
+
+        <button class="icon-btn" id="openCartBtn" title="Bolsa de compra" aria-label="Bolsa de compra">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <span class="badge-count" id="cartBadge" style="display: none;">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================
+         HERO EXCLUSIVO: MUJERES
+         ========================================== -->
+    <section class="hero-section" style="padding-bottom: 2rem;">
+      <div class="container">
+        <div class="hero-editorial-banner" style="height: 480px;">
+          <div class="hero-media-wrapper">
+            <img 
+              class="hero-image" 
+              src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1920&q=80" 
+              alt="Colección Mujeres ModaCore"
+            />
+          </div>
+          <div class="hero-overlay"></div>
+          
+          <div class="hero-content">
+            <span class="hero-subtitle-tag">Universo Femenino • Nueva Temporada</span>
+            <h1 class="hero-title">Siluetas Puras.<br>Sastrería Serena.</h1>
+            <p class="hero-description">
+              Prendas estructuradas que abrazan la ligereza: abrigos trench hidrófugos, vestidos fluidos en lino natural, blazers rectangulares y calzado monocromático concebido para elevar el día a día.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         FRANJA DE VALOR ESPECÍFICA MUJERES
+         ========================================== -->
+    <section class="container">
+      <div class="features-trio-grid">
+        <div class="trio-item">
+          <div class="trio-number">01</div>
+          <div>
+            <h4 style="font-size: 0.92rem; font-weight: 700;">Fibras Nobles</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Algodón hilado denso, seda natural y lino fresco.</p>
+          </div>
+        </div>
+        <div class="trio-item">
+          <div class="trio-number">02</div>
+          <div>
+            <h4 style="font-size: 0.92rem; font-weight: 700;">Calzado Anatómico</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Suelas de amortiguación track y piel napa suave.</p>
+          </div>
+        </div>
+        <div class="trio-item">
+          <div class="trio-number">03</div>
+          <div>
+            <h4 style="font-size: 0.92rem; font-weight: 700;">Patronaje Contemporáneo</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Caídas arquitectónicas adaptadas a todo movimiento.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         CATÁLOGO ESPECÍFICO DE MUJERES
+         ========================================== -->
+    <section class="catalog-section" style="padding-top: 1rem;">
+      <div class="container">
+        <!-- Controles de Filtro -->
+        <div class="catalog-controls fade-in-up">
+          <div class="filter-pills-group">
+            <button class="filter-btn active" data-filter="all">Todas las Piezas</button>
+            <button class="filter-btn" data-filter="ropa">Ropa de Mujer</button>
+            <button class="filter-btn" data-filter="calzado">Calzado & Sneakers</button>
+          </div>
+
+          <div class="catalog-right-controls">
+            <div class="search-input-wrap">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input type="text" id="catalogSearch" placeholder="Buscar en Mujeres..." autocomplete="off">
+            </div>
+
+            <select class="sort-select" id="catalogSort" aria-label="Ordenar productos">
+              <option value="default">Recomendados</option>
+              <option value="price-asc">Precio: Menor a Mayor</option>
+              <option value="price-desc">Precio: Mayor a Menor</option>
+              <option value="rating">Mejor Valorados</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Rejilla de Productos de Mujer -->
+        <div class="products-grid" id="productsGrid">
+          <!-- Inyectado dinámicamente según data-page="mujeres" -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         EDITORIAL LOOKBOOK MUJERES
+         ========================================== -->
+    <section class="section-showcase alt-bg" style="margin-top: 4rem;">
+      <div class="container">
+        <div class="showcase-banner-grid">
+          <div class="showcase-visual fade-in-up">
+            <img 
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80" 
+              alt="Editorial Mujer ModaCore" 
+              loading="lazy"
+            />
+            <div class="floating-lookbook-badge">
+              <span class="look-title">Lookbook Primavera</span>
+              <div class="look-name">Cortes Atemporales & Calzado Puro</div>
+            </div>
+          </div>
+
+          <div class="showcase-info-content fade-in-up">
+            <span class="tag-label">Concepto Atelier</span>
+            <h2 class="showcase-headline">El Guardarropa Cápsula que Mereces</h2>
+            <p class="showcase-text">
+              Cada prenda femenina de ModaCore nace con la intención de reducir el exceso y priorizar la versatilidad: piezas que combinan entre sí con armonía y calzado con el que caminar sin fatiga durante todo el día.
+            </p>
+            <div class="showcase-highlights-list">
+              <div class="highlight-item">
+                <span class="highlight-icon">✓</span>
+                <span>Costuras francesas duraderas</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">✓</span>
+                <span>Botines con plantilla con memoria</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">✓</span>
+                <span>Lino lavado con efecto suave</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">✓</span>
+                <span>Sneakers sin costuras agresivas</span>
+              </div>
+            </div>
+            <a href="calzado.html" class="btn-primary">
+              Ver Colección de Calzado →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       PIE DE PÁGINA (FOOTER)
+       ========================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            MODACORE<span class="logo-dot"></span>
+          </a>
+          <p>
+            Moda y calzado contemporáneos que celebran la simplicidad, la calidad y el diseño ético para toda la familia.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Departamentos</h5>
+          <ul>
+            <li><a href="mujeres.html" style="color: #FFFFFF; font-weight: 600;">Colección Mujeres</a></li>
+            <li><a href="hombres.html">Colección Hombres</a></li>
+            <li><a href="kids.html">Colección Kids</a></li>
+            <li><a href="calzado.html">Calzado y Zapatillas</a></li>
+            <li><a href="admin.html" style="color: var(--accent-gold);">Panel ERP Administrador</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Garantía & Envíos</h5>
+          <ul>
+            <li><a href="#">Envío express gratuito > 90€</a></li>
+            <li><a href="#">Cambios en 30 días naturales</a></li>
+            <li><a href="#">Asesoría de tallas personalizada</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Ética & Trazabilidad</h5>
+          <ul>
+            <li><a href="#">Talleres en España y Portugal</a></li>
+            <li><a href="#">Piel vegana y curtido vegetal</a></li>
+            <li><a href="#">Empaquetado biodegradable</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 ModaCore Studio Inc. Todos los derechos reservados.</span>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="#">Privacidad</a>
+          <a href="#">Términos</a>
+          <a href="admin.html">Acceso ERP</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       OVERLAY, DRAWERS Y MODALES
+       ========================================== -->
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+
+  <!-- Cart Drawer -->
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Bolsa de compras">
+    <div class="drawer-header">
+      <h3 class="drawer-title">
+        <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+        </svg>
+        Bolsa de Compra
+      </h3>
+      <button class="drawer-close-btn" id="closeCartBtn" aria-label="Cerrar bolsa">✕</button>
+    </div>
+    <div class="shipping-progress-box">
+      <div class="shipping-progress-text">
+        <span id="shippingMsg">Envío gratis a partir de 90.00€</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="shippingProgress" style="width: 0%;"></div>
+      </div>
+    </div>
+    <div class="cart-items-list" id="cartItemsList"></div>
+    <div class="drawer-footer">
+      <div class="subtotal-row">
+        <span>Subtotal:</span>
+        <span id="cartSubtotal">0.00€</span>
+      </div>
+      <button class="checkout-btn" id="checkoutBtn">Finalizar Compra →</button>
+    </div>
+  </aside>
+
+  <!-- Modal Quick View -->
+  <div class="quick-view-modal" id="quickViewModal" role="dialog" aria-modal="true">
+    <button class="modal-close-btn" id="closeQuickViewBtn">✕</button>
+    <div class="modal-body-grid">
+      <div class="modal-img-wrap">
+        <img id="qvImage" src="" alt="Prenda">
+      </div>
+      <div class="modal-product-content">
+        <span class="modal-category" id="qvCategory"></span>
+        <h3 class="modal-title" id="qvTitle"></h3>
+        <div class="modal-price-box">
+          <span class="modal-current-price" id="qvPrice"></span>
+          <span class="modal-old-price" id="qvOldPrice" style="display: none;"></span>
+        </div>
+        <p class="modal-desc" id="qvDesc"></p>
+        <div>
+          <div class="modal-option-title">Talla:</div>
+          <div class="size-pills-row" id="qvSizes"></div>
+        </div>
+        <div class="modal-cta-row">
+          <button class="btn-primary" id="qvAddToCartBtn" style="flex: 1; justify-content: center;">Añadir a la Bolsa</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Éxito Pedido -->
+  <div class="quick-view-modal order-confirmation-modal" id="orderSuccessModal" role="dialog" aria-modal="true" style="max-width: 520px;">
+    <button class="modal-close-btn" id="closeOrderModalBtn">✕</button>
+    <div style="padding: 3rem 2.2rem; text-align: center;">
+      <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(16, 185, 129, 0.12); color: #10B981; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">✓</div>
+      <h3 style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; margin-bottom: 0.8rem;">¡Gracias por tu Pedido!</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Registrado en el ERP Administrador.</p>
+      <div style="background: var(--bg-secondary); padding: 1.2rem; border-radius: var(--radius-md); text-align: left; margin-bottom: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 4px;">
+          <span>Orden:</span><strong id="confirmedOrderId"></strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+          <span>Total:</span><strong id="confirmedOrderTotal"></strong>
+        </div>
+      </div>
+      <button class="btn-primary" id="continueShoppingBtn" style="width: 100%; justify-content: center;">Seguir Comprando</button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="brand-logo">MODACORE<span class="logo-dot"></span></span>
+      <button class="icon-btn" id="closeMobileNavBtn">✕</button>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Inicio</a>
+      <a href="mujeres.html" class="mobile-nav-link active">Mujeres</a>
+      <a href="hombres.html" class="mobile-nav-link">Hombres</a>
+      <a href="kids.html" class="mobile-nav-link">Kids</a>
+      <a href="calzado.html" class="mobile-nav-link">Calzado</a>
+      <a href="admin.html" class="mobile-nav-link" style="color: var(--accent-gold);">Admin ERP</a>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/products.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
