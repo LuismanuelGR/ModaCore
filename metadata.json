@@ -1,6 +1,0 @@
-{
-  "name": "Tienda de Ropa y Calzado",
-  "description": "Aplicación de tienda online para ropa y calzado con pasarela de pagos integrada y control de inventario en tiempo real.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
