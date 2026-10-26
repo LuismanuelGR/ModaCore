@@ -1,0 +1,988 @@
+/* ==========================================================================
+   MODACORE ERP ADMINISTRADOR - STYLESHEET
+   Estilo: Ultra-Moderno, Minimalista, Sin elementos por defecto del navegador
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Outfit', sans-serif;
+
+  /* Paleta ERP Administrador */
+  --erp-bg: #0F1117;
+  --erp-sidebar: #161821;
+  --erp-card: #1C1F2B;
+  --erp-card-hover: #232736;
+  --erp-border: rgba(255, 255, 255, 0.08);
+  --erp-border-strong: rgba(255, 255, 255, 0.16);
+  
+  --erp-text: #F3F4F6;
+  --erp-text-muted: #9CA3AF;
+  --erp-text-dim: #6B7280;
+
+  --accent-gold: #C5A880;
+  --accent-gold-glow: rgba(197, 168, 128, 0.25);
+  --accent-green: #10B981;
+  --accent-green-bg: rgba(16, 185, 129, 0.12);
+  --accent-amber: #F59E0B;
+  --accent-amber-bg: rgba(245, 158, 11, 0.12);
+  --accent-red: #EF4444;
+  --accent-red-bg: rgba(239, 68, 68, 0.12);
+  --accent-blue: #3B82F6;
+  --accent-blue-bg: rgba(59, 130, 246, 0.12);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.25);
+  --shadow-pop: 0 12px 36px rgba(0, 0, 0, 0.4);
+
+  --transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Modo Claro Opcional para ERP */
+body.erp-light {
+  --erp-bg: #F4F5F7;
+  --erp-sidebar: #FFFFFF;
+  --erp-card: #FFFFFF;
+  --erp-card-hover: #F8F9FA;
+  --erp-border: rgba(0, 0, 0, 0.08);
+  --erp-border-strong: rgba(0, 0, 0, 0.15);
+  --erp-text: #111827;
+  --erp-text-muted: #6B7280;
+  --erp-text-dim: #9CA3AF;
+  --shadow-card: 0 4px 18px rgba(0, 0, 0, 0.05);
+}
+
+/* Reset y Eliminación de Aspecto por Defecto */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--erp-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--erp-border-strong);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-gold);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--erp-border-strong) var(--erp-bg);
+}
+
+::selection {
+  background: var(--accent-gold);
+  color: #121212;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--erp-bg);
+  color: var(--erp-text);
+  line-height: 1.5;
+  overflow-x: hidden;
+  height: 100vh;
+}
+
+/* Reset de Controles Nativos */
+input, select, textarea, button {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
+}
+
+/* --- Layout del ERP (Sidebar + Main) --- */
+.erp-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.erp-sidebar {
+  width: 270px;
+  background-color: var(--erp-sidebar);
+  border-right: 1px solid var(--erp-border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.sidebar-header {
+  padding: 1.8rem 1.6rem 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--erp-text);
+}
+
+.brand-text {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: 0.06em;
+}
+
+.brand-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: var(--accent-gold-glow);
+  color: var(--accent-gold);
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 1px solid var(--accent-gold);
+}
+
+/* Navegación del Menú ERP */
+.sidebar-nav {
+  flex: 1;
+  padding: 1.2rem 0.9rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.nav-section-title {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--erp-text-dim);
+  font-weight: 700;
+  padding: 0.8rem 0.8rem 0.4rem;
+}
+
+.erp-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  color: var(--erp-text-muted);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+
+.erp-nav-item svg {
+  width: 19px;
+  height: 19px;
+  stroke-width: 1.8;
+  color: var(--erp-text-dim);
+  transition: color var(--transition);
+}
+
+.erp-nav-item:hover {
+  background-color: var(--erp-card);
+  color: var(--erp-text);
+}
+
+.erp-nav-item:hover svg {
+  color: var(--accent-gold);
+}
+
+.erp-nav-item.active {
+  background-color: var(--erp-card);
+  color: var(--accent-gold);
+  font-weight: 600;
+  border-left: 3px solid var(--accent-gold);
+}
+
+.erp-nav-item.active svg {
+  color: var(--accent-gold);
+}
+
+.nav-counter {
+  margin-left: auto;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--erp-border);
+  color: var(--erp-text-muted);
+}
+
+/* Footer del Sidebar */
+.sidebar-footer {
+  padding: 1.2rem;
+  border-top: 1px solid var(--erp-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.btn-store-return {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--erp-card);
+  border: 1px solid var(--erp-border);
+  color: var(--erp-text);
+  padding: 10px;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+.btn-store-return:hover {
+  background: var(--accent-gold);
+  color: #121212;
+  border-color: var(--accent-gold);
+}
+
+/* --- Área Principal de Contenido --- */
+.erp-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--erp-bg);
+}
+
+/* Barra Superior del ERP */
+.erp-topbar {
+  height: 70px;
+  padding: 0 2rem;
+  border-bottom: 1px solid var(--erp-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--erp-sidebar);
+  flex-shrink: 0;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.page-headline {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.sync-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.75rem;
+  color: var(--accent-green);
+  background: var(--accent-green-bg);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+}
+
+.sync-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  box-shadow: 0 0 8px var(--accent-green);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.erp-search-box {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.erp-search-box input {
+  background: var(--erp-bg);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--radius-full);
+  padding: 8px 16px 8px 36px;
+  font-size: 0.82rem;
+  color: var(--erp-text);
+  width: 220px;
+  transition: width var(--transition), border-color var(--transition);
+}
+
+.erp-search-box input:focus {
+  width: 300px;
+  border-color: var(--accent-gold);
+}
+
+.erp-search-box svg {
+  position: absolute;
+  left: 12px;
+  width: 16px;
+  height: 16px;
+  color: var(--erp-text-dim);
+  pointer-events: none;
+}
+
+.btn-icon-erp {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--erp-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--erp-text-muted);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-icon-erp:hover {
+  background: var(--erp-card);
+  color: var(--erp-text);
+  border-color: var(--erp-border-strong);
+}
+
+.admin-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-gold), #8A6E46);
+  color: #121212;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Contenedor con Scroll de Vistas */
+.erp-content-viewport {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+}
+
+/* --- Componentes de Tarjetas & KPIs --- */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.kpi-card {
+  background: var(--erp-card);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition);
+}
+
+.kpi-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--erp-border-strong);
+}
+
+.kpi-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+
+.kpi-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--erp-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.kpi-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kpi-value {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+}
+
+.kpi-meta {
+  font-size: 0.78rem;
+  color: var(--erp-text-dim);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kpi-meta.positive { color: var(--accent-green); }
+.kpi-meta.negative { color: var(--accent-red); }
+
+/* --- Tablas ERP Elegantes --- */
+.erp-card-container {
+  background: var(--erp-card);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 2rem;
+}
+
+.card-header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.card-title-group h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.card-title-group p {
+  font-size: 0.82rem;
+  color: var(--erp-text-muted);
+  margin-top: 2px;
+}
+
+.erp-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.btn-erp-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-gold);
+  color: #121212;
+  padding: 9px 18px;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-erp-primary:hover {
+  background: #D9BE9B;
+  transform: translateY(-1px);
+}
+
+.btn-erp-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--erp-sidebar);
+  border: 1px solid var(--erp-border);
+  color: var(--erp-text);
+  padding: 9px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-erp-secondary:hover {
+  border-color: var(--erp-border-strong);
+  background: var(--erp-card-hover);
+}
+
+/* Tabla Estilizada */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.erp-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.88rem;
+}
+
+.erp-table th {
+  padding: 12px 16px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--erp-text-dim);
+  font-weight: 700;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--erp-border);
+  color: var(--erp-text);
+  vertical-align: middle;
+}
+
+.erp-table tr:hover td {
+  background-color: var(--erp-card-hover);
+}
+
+.table-prod-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.table-prod-img {
+  width: 44px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  background: var(--erp-sidebar);
+}
+
+.table-prod-name {
+  font-weight: 600;
+  color: var(--erp-text);
+  margin-bottom: 2px;
+}
+
+.table-prod-sku {
+  font-size: 0.72rem;
+  color: var(--erp-text-dim);
+}
+
+/* Badges de Estado */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.status-in-stock { background: var(--accent-green-bg); color: var(--accent-green); }
+.status-low-stock { background: var(--accent-amber-bg); color: var(--accent-amber); }
+.status-out-stock { background: var(--accent-red-bg); color: var(--accent-red); }
+
+.status-badge-delivered { background: var(--accent-green-bg); color: var(--accent-green); }
+.status-badge-shipped { background: var(--accent-blue-bg); color: var(--accent-blue); }
+.status-badge-pending { background: var(--accent-amber-bg); color: var(--accent-amber); }
+.status-badge-preparing { background: rgba(168, 85, 247, 0.15); color: #C084FC; }
+
+/* Selector de Estado en Pedidos */
+.order-status-select {
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  background-color: var(--erp-sidebar);
+  border: 1px solid var(--erp-border);
+  color: var(--erp-text);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--transition);
+}
+
+.order-status-select:focus {
+  border-color: var(--accent-gold);
+}
+
+/* Acciones en Tabla */
+.action-buttons-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.table-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--erp-text-muted);
+  border: 1px solid var(--erp-border);
+  transition: all var(--transition);
+  cursor: pointer;
+}
+
+.table-btn:hover {
+  background: var(--erp-card);
+  color: var(--erp-text);
+  border-color: var(--erp-border-strong);
+}
+
+.table-btn.delete-btn:hover {
+  background: var(--accent-red-bg);
+  color: var(--accent-red);
+  border-color: var(--accent-red);
+}
+
+/* --- Switches Modernos para Métodos de Pago --- */
+.switch-label {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.switch-label input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--erp-border);
+  transition: var(--transition);
+  border-radius: var(--radius-full);
+}
+
+.switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #FFFFFF;
+  transition: var(--transition);
+  border-radius: 50%;
+}
+
+.switch-label input:checked + .switch-slider {
+  background-color: var(--accent-green);
+}
+
+.switch-label input:checked + .switch-slider:before {
+  transform: translateX(20px);
+}
+
+/* Grilla de Métodos de Pago */
+.payment-methods-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.payment-method-card {
+  background: var(--erp-sidebar);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--radius-md);
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: border-color var(--transition);
+}
+
+.payment-method-card:hover {
+  border-color: var(--erp-border-strong);
+}
+
+.pm-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.pm-info h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pm-info p {
+  font-size: 0.82rem;
+  color: var(--erp-text-muted);
+  margin-top: 4px;
+}
+
+/* --- Modales del ERP (Sin alertas nativas) --- */
+.erp-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition);
+  padding: 1.5rem;
+}
+
+.erp-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.erp-modal-box {
+  background: var(--erp-sidebar);
+  border: 1px solid var(--erp-border-strong);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 650px;
+  box-shadow: var(--shadow-pop);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: scale(0.95);
+  transition: transform var(--transition);
+}
+
+.erp-modal-overlay.open .erp-modal-box {
+  transform: scale(1);
+}
+
+.erp-modal-header {
+  padding: 1.4rem 1.8rem;
+  border-bottom: 1px solid var(--erp-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.erp-modal-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.erp-modal-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--erp-text-muted);
+  cursor: pointer;
+  transition: transform var(--transition);
+}
+
+.erp-modal-close:hover {
+  transform: rotate(90deg);
+  color: var(--erp-text);
+}
+
+.erp-modal-body {
+  padding: 1.8rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--erp-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.form-control {
+  background: var(--erp-bg);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  color: var(--erp-text);
+  font-size: 0.88rem;
+  transition: border-color var(--transition);
+}
+
+.form-control:focus {
+  border-color: var(--accent-gold);
+}
+
+.erp-modal-footer {
+  padding: 1.2rem 1.8rem;
+  border-top: 1px solid var(--erp-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Toast ERP */
+.erp-toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.erp-toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #1C1F2B;
+  border: 1px solid var(--accent-gold);
+  color: #FFFFFF;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-pop);
+  font-size: 0.88rem;
+  font-weight: 500;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all var(--transition);
+}
+
+.erp-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.dashboard-split-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr;
+  gap: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dashboard-split-grid {
+    grid-template-columns: 1fr;
+  }
+  .payment-methods-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .erp-sidebar {
+    width: 64px;
+  }
+  .brand-text, .brand-tag, .nav-section-title, .erp-nav-item span, .nav-counter, .btn-store-return span {
+    display: none;
+  }
+  .sidebar-header {
+    padding: 1.2rem 0.8rem;
+    justify-content: center;
+  }
+  .sidebar-nav {
+    padding: 0.8rem 0.4rem;
+  }
+  .erp-nav-item {
+    justify-content: center;
+    padding: 10px 0;
+  }
+  .btn-store-return {
+    justify-content: center;
+    padding: 10px 0;
+  }
+  .erp-content-viewport {
+    padding: 1.2rem 1rem;
+  }
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .erp-topbar {
+    padding: 0 1rem;
+    height: 60px;
+  }
+  .page-headline {
+    font-size: 1.1rem;
+  }
+  .sync-status span:last-child {
+    display: none;
+  }
+  .erp-search-box input {
+    width: 120px;
+  }
+  .erp-card-container {
+    padding: 1.2rem 1rem;
+  }
+}
